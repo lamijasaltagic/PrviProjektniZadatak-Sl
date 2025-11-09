@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>World of Art</title>
@@ -144,8 +145,8 @@
       <li><a href="#sociological">Sociological Definition</a></li>
       <li><a href="#production">Production</a></li>
       <li><a href="#distribution">Distribution</a></li>
-      <li><a href="#evaluation">Evaluation</a></li>
-      <li><a href="#change">Change</a></li>
+     
+  
     </ul>
 
      <h2 id="definition">Definition</h2>
@@ -247,11 +248,7 @@
             The tradition of auctioning works of art grew from the difficulty of determining the price of rare and unique objects. While estimates of market value are made for other purposes, such as taxation, charitable donations, and estates; in recent years prices paid at auctions have exceeded such estimates.
 
         </p>
-        <h2 id="evaluation">Evaluation</h2>
-
-        <p>
-
-            In 1964 critic and philosopher Arthur Danto published an essay defining "The Artworld," in terms of
+       
   </section>
 
   
@@ -442,7 +439,7 @@ Hayez’s art often reflected the political and social currents of his time, par
     
   </section>
 
-  <!-- ABOUT -->
+  
   <section id="about">
     <h2>About Art</h2>
     <p>Art is the expression of the soul. It manifests itself through performing arts, painting, music, cinematography, sculpture, architecture… On this page, you can get to know each of these forms and their creators. Every week, there is an Update.</p>
@@ -467,6 +464,81 @@ Hayez’s art often reflected the political and social currents of his time, par
   <footer>
     <p>World of Art 2025</p>
   </footer>
+<script>
+
+const palettes = [
+  ["#fff5f5", "#fef9e7", "#e8f8f5", "#fbeee6"],
+  ["#fdf6f0", "#f0ece2", "#dfd3c3", "#c7b198"],
+  ["#fffaf0", "#fde2e4", "#fad2e1", "#c5dedd"],
+  ["#f9f7f7", "#dbe2ef", "#3f72af", "#112d4e"]
+];
+const randomPalette = palettes[Math.floor(Math.random() * palettes.length)];
+document.body.style.backgroundColor = randomPalette[0];
+document.querySelector("header").style.backgroundColor = randomPalette[2];
+document.querySelector("footer").style.backgroundColor = randomPalette[2];
+document.querySelector("nav").style.backgroundColor = randomPalette[3];
+
+
+document.querySelectorAll("img").forEach(img => {
+  img.addEventListener("mousemove", e => {
+    const sparkle = document.createElement("span");
+    sparkle.classList.add("sparkle");
+    sparkle.style.left = e.offsetX + "px";
+    sparkle.style.top = e.offsetY + "px";
+    img.parentElement.style.position = "relative";
+    img.parentElement.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 700);
+  });
+});
+
+
+const sparkleStyle = document.createElement("style");
+sparkleStyle.innerHTML = `
+  .sparkle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, gold 0%, transparent 80%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: sparkleAnim 0.7s ease-out forwards;
+  }
+  @keyframes sparkleAnim {
+    from { transform: scale(1); opacity: 1; }
+    to { transform: scale(3); opacity: 0; }
+  }
+`;
+document.head.appendChild(sparkleStyle);
+
+
+window.addEventListener("load", () => {
+  const quotes = [
+    " Art washes away from the soul the dust of everyday life. – Picasso",
+    " Every artist was first an amateur. – Emerson",
+    " Creativity takes courage. – Henri Matisse",
+    " Art enables us to find ourselves and lose ourselves at the same time. – Thomas Merton",
+    " The earth without art is just 'eh'."
+  ];
+  const message = document.createElement("div");
+  message.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+  message.style.position = "fixed";
+  message.style.bottom = "20px";
+  message.style.right = "20px";
+  message.style.background = "rgba(179,58,58,0.9)";
+  message.style.color = "white";
+  message.style.padding = "15px 20px";
+  message.style.borderRadius = "8px";
+  message.style.fontStyle = "italic";
+  message.style.boxShadow = "0 2px 8px rgba(0,0,0,0.3)";
+  message.style.transition = "opacity 2s ease";
+  document.body.appendChild(message);
+  setTimeout(() => (message.style.opacity = "0"), 6000);
+  setTimeout(() => message.remove(), 8000);
+});
+
+
+document.querySelector("footer p").textContent = `World of Art ${new Date().getFullYear()}`;
+</script>
 
   <script>
     function showSection(id) {
